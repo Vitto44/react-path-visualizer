@@ -1,24 +1,30 @@
-import "./App.css";
+const x = 30;
+const y = 50;
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const grid = [];
+
+for (let i = 0; i < x; i++) {
+  for (let j = 0; j < y; j++) {
+    grid.push({
+      num: i * y + j,
+      status: 3,
+      F: Infinity,
+      prev: null,
+      G: Infinity,
+      H: Infinity,
+    });
+  }
 }
 
-export default App;
+grid[0].status = 0;
+grid[grid.length - 1].status = 1;
+
+const PathFinder = () => {
+  return (
+    <div>
+      <h1>PathFinder</h1>
+    </div>
+  );
+};
+
+export default PathFinder;
