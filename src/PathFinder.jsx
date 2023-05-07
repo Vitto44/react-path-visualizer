@@ -37,7 +37,12 @@ const PathFinder = () => {
       <div>
         <div>
           {matrix.map((node) => (
-            <Node />
+            <Node
+              isMouseDown={isMouseDown}
+              setIsMouseDown={setIsMouseDown}
+              key={node.num}
+              status={node.status}
+            />
           ))}
         </div>
       </div>
