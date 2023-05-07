@@ -1,3 +1,7 @@
+import { useState } from "react";
+import Bar from "./components/Bar";
+import Node from "./components/Node";
+
 const x = 30;
 const y = 50;
 
@@ -20,9 +24,23 @@ grid[0].status = 0;
 grid[grid.length - 1].status = 1;
 
 const PathFinder = () => {
+  const [mode, setMode] = useState(0);
+  const [alg, setAlg] = useState(1);
+  const [matrix, setMatrix] = useState(grid);
+  const [disabledChoice, setDisabledChoice] = useState(false);
+  const [disableStarters, setDisableStarters] = useState(false);
+  const [isMouseDown, setIsMouseDown] = useState(false);
+
   return (
     <div>
-      <h1>PathFinder</h1>
+      <Bar />
+      <div>
+        <div>
+          {matrix.map((node) => (
+            <Node />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
