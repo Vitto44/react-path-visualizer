@@ -32,7 +32,7 @@ const PathFinder = () => {
   const [isMouseDown, setIsMouseDown] = useState(false);
 
   return (
-    <div>
+    <div style={styles.main}>
       <Bar />
       <div>
         <div>
@@ -40,7 +40,11 @@ const PathFinder = () => {
             <Node
               isMouseDown={isMouseDown}
               setIsMouseDown={setIsMouseDown}
+              disabledChoice={disabledChoice}
+              setMatrix={setMatrix}
+              mode={mode}
               key={node.num}
+              num={node.num}
               status={node.status}
             />
           ))}
@@ -48,6 +52,27 @@ const PathFinder = () => {
       </div>
     </div>
   );
+};
+
+const styles = {
+  main: {
+    maxWidth: "1000px",
+    margin: "0 auto",
+  },
+  center: {
+    width: "100vw",
+    maxWidth: "1000px",
+    position: "absolute",
+    top: "57%",
+    left: "50%",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%) ",
+  },
+  grid: {
+    width: "100%",
+    display: "flex",
+    flexWrap: "wrap",
+  },
 };
 
 export default PathFinder;
