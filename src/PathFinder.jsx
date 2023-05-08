@@ -33,9 +33,17 @@ const PathFinder = () => {
 
   return (
     <div style={styles.main}>
-      <Bar />
-      <div>
-        <div>
+      <Bar
+        disableStarters={disableStarters}
+        alg={alg}
+        setAlg={setAlg}
+        reset={() => setDisabledChoice(false)}
+        disabledChoice={disabledChoice}
+        setMode={setMode}
+        mode={mode}
+      />
+      <div style={styles.center}>
+        <div style={styles.grid}>
           {matrix.map((node) => (
             <Node
               isMouseDown={isMouseDown}
