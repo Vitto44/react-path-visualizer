@@ -11,8 +11,59 @@ const algorithms = [
   { id: 1, name: "A*" },
 ];
 
-const Bar = () => {
-  return <div>bar</div>;
+const Bar = ({
+  disableStarters,
+  mode,
+  setMode,
+  start,
+  clear,
+  disabledChoice,
+  reset,
+  alg,
+  setAlg,
+}) => {
+  return (
+    <div>
+      {
+        <p style={styles.disabledText}>
+          {disabledChoice && "*To change parameters clear or reset the Grid"}
+        </p>
+      }
+      <div style={styles.main}>
+        <div style={styles.buttonBackground}>
+          <button
+            disabled={disableStarters}
+            style={{
+              ...styles.button,
+              backgroundColor: "darkGreen",
+              color: "white",
+              opacity: disableStarters ? 0.5 : 1,
+            }}
+            onClick={start}
+          >
+            Visualize
+          </button>
+        </div>
+        <div style={styles.buttonBackground}>
+          {modes.map((Item) => (
+            <button
+              disabled={disabledChoice}
+              key={Item.id}
+              style={{
+                ...styles.button,
+                backgroundColor:
+                  Item.id === mode ? "#42a5f5" : styles.button.backgroundColor,
+                opacity: disabledChoice ? 0.5 : 1,
+              }}
+              onClick={() => setMode(Item.id)}
+            >
+              {Item.name}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 const styles = {
@@ -37,7 +88,6 @@ const styles = {
     cursor: "pointer",
   },
   disabledText: {
-    color: "#fff",
     height: "15px",
   },
   buttonBackground: {
@@ -50,4 +100,5 @@ const styles = {
     flexWrap: "wrap",
   },
 };
+
 export default Bar;
