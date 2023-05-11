@@ -27,7 +27,15 @@ const getColor = (status) => {
   }
 };
 
-const Node = ({ status }) => {
+const Node = ({
+  num,
+  mode,
+  setMatrix,
+  status,
+  disabledChoice,
+  isMouseDown,
+  setIsMouseDown,
+}) => {
   const styles = {
     node: {
       backgroundColor: getColor(status),
@@ -40,8 +48,45 @@ const Node = ({ status }) => {
       transition: "all 0.3s",
     },
   };
+
   return (
-    <div style={styles.node} onClick={() => console.log("clickity click")} />
+    <div
+      style={styles.node}
+      onClick={() => {
+        !disabledChoice &&
+          setMatrix((prev) => {
+            if (mode === 1 || mode === 0) {
+              const newMatrix = [...prev];
+              newMatrix.forEach((node) => {
+                if (node.status === mode) {
+                  node.status = 3;
+                }
+              });
+              newMatrix[num].status = mode;
+              return newMatrix;
+            } else if (status === 3 || status === 4 || status === 2) {
+              const newMatrix = [...prev];
+              newMatrix[num].status = mode;
+              setIsMouseDown(!isMouseDown);
+              return newMatrix;
+            }
+            return prev;
+          });
+      }}
+      onMouseEnter={() => {
+        if (mode === 2 || mode === 3) {
+          if (status === 3 || status === 4 || status === 2) {
+            !disabledChoice &&
+              isMouseDown &&
+              setMatrix((prev) => {
+                const newMatrix = [...prev];
+                newMatrix[num].status = mode;
+                return newMatrix;
+              });
+          }
+        }
+      }}
+    ></div>
   );
 };
 
