@@ -35,6 +35,30 @@ const Bar = ({
             disabled={disableStarters}
             style={{
               ...styles.button,
+              backgroundColor: "crimson",
+              color: "white",
+              opacity: disableStarters ? 0.5 : 1,
+            }}
+            onClick={clear}
+          >
+            Clear
+          </button>
+          <button
+            disabled={disableStarters}
+            style={{
+              ...styles.button,
+              backgroundColor: "#ca5310",
+              color: "white",
+              opacity: disableStarters ? 0.5 : 1,
+            }}
+            onClick={reset}
+          >
+            Reset
+          </button>
+          <button
+            disabled={disableStarters}
+            style={{
+              ...styles.button,
               backgroundColor: "darkGreen",
               color: "white",
               opacity: disableStarters ? 0.5 : 1,
@@ -56,6 +80,23 @@ const Bar = ({
                 opacity: disabledChoice ? 0.5 : 1,
               }}
               onClick={() => setMode(Item.id)}
+            >
+              {Item.name}
+            </button>
+          ))}
+        </div>
+        <div style={styles.buttonBackground}>
+          {algorithms.map((Item) => (
+            <button
+              disabled={disabledChoice}
+              key={Item.id}
+              style={{
+                ...styles.button,
+                backgroundColor:
+                  Item.id === alg ? "#42a5f5" : styles.button.backgroundColor,
+                opacity: disabledChoice ? 0.5 : 1,
+              }}
+              onClick={() => setAlg(Item.id)}
             >
               {Item.name}
             </button>
