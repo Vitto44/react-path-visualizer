@@ -31,16 +31,51 @@ const PathFinder = () => {
   const [disableStarters, setDisableStarters] = useState(false);
   const [isMouseDown, setIsMouseDown] = useState(false);
 
+  const clearMatrix = () => {
+    setDisabledChoice(false);
+    setMatrix((prev) => {
+      const newMatrix = [...prev];
+      newMatrix.forEach((node) => {
+        node.F = Infinity;
+        node.G = Infinity;
+        node.H = Infinity;
+        node.prev = null;
+        if (node.status !== 0 && node.status !== 1) {
+          node.status = 3;
+        }
+      });
+      return newMatrix;
+    });
+  };
+
+  const reset = () => {
+    setDisabledChoice(false);
+    setMatrix((prev) => {
+      const newMatrix = [...prev];
+      newMatrix.forEach((node) => {
+        node.F = Infinity;
+        node.G = Infinity;
+        node.H = Infinity;
+        node.prev = null;
+        if (node.status !== 0 && node.status !== 1 && node.status !== 2) {
+          node.status = 3;
+        }
+      });
+      return newMatrix;
+    });
+  };
+
   return (
     <div style={styles.main}>
       <Bar
         disableStarters={disableStarters}
         alg={alg}
         setAlg={setAlg}
-        reset={() => setDisabledChoice(false)}
+        reset={reset}
         disabledChoice={disabledChoice}
         setMode={setMode}
         mode={mode}
+        clear={clearMatrix}
       />
       <div style={styles.center}>
         <div style={styles.grid}>
