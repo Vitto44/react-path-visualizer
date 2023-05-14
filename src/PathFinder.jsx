@@ -65,6 +65,18 @@ const PathFinder = () => {
     });
   };
 
+  const startVisualization = () => {
+    setDisableStarters(true);
+    if (alg === 0) {
+      const result = dijkstra(matrix);
+      Animate(result, 10, "djikstra");
+    }
+    if (alg === 1) {
+      const result = aStar([...matrix]);
+      Animate(result, 15, "A*");
+    }
+  };
+
   return (
     <div style={styles.main}>
       <Bar
@@ -76,6 +88,7 @@ const PathFinder = () => {
         setMode={setMode}
         mode={mode}
         clear={clearMatrix}
+        start={startVisualization}
       />
       <div style={styles.center}>
         <div style={styles.grid}>
