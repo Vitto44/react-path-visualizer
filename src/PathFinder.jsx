@@ -65,14 +65,85 @@ const PathFinder = () => {
     });
   };
 
+  const Animate = (result, speed, type) => {
+    setDisabledChoice(true);
+    const { visitedNodes } = result;
+    for (let i = 0; i < visitedNodes.length; i++) {
+      setTimeout(
+        () => {
+          setMatrix((prev) => {
+            const newMatrix = [...prev];
+            if (i === 0) {
+              newMatrix[visitedNodes[i].num].status = 0;
+              return newMatrix;
+            }
+            if (
+              i === visitedNodes.length - 1 &&
+              type === "A*" &&
+              !!result.path
+            ) {
+              newMatrix[visitedNodes[i].num].status = 1;
+              return newMatrix;
+            }
+            newMatrix[visitedNodes[i].num].status = 5;
+            return newMatrix;
+          });
+        },
+        type === "djikstra" ? speed * i : speed
+      );
+    }
+
+    if (result.path) {
+      setTimeout(
+        () => {
+          for (let i = 0; i < result.path.length; i++) {
+            setTimeout(() => {
+              setMatrix((prev) => {
+                const newMatrix = [...prev];
+                if (i === result.path.length - 1) {
+                  newMatrix[result.path[i].num].status = 1;
+                  return newMatrix;
+                }
+                if (i === 0) {
+                  newMatrix[result.path[i].num].status = 0;
+                  return newMatrix;
+                }
+                newMatrix[result.path[i].num].status = 6;
+                return newMatrix;
+              });
+            }, 25 * i);
+          }
+        },
+        type === "djikstra"
+          ? speed * visitedNodes.length
+          : speed * result.path.length
+      );
+    } else {
+      alert("No path found!");
+      setDisableStarters(false);
+      return;
+    }
+
+    if (result?.path) {
+      setTimeout(
+        () => {
+          setDisableStarters(false);
+        },
+        type === "djikstra"
+          ? speed * visitedNodes.length + 25 * result.path.length
+          : speed * result.path.length + 25 * result.path.length
+      );
+    }
+  };
+
   const startVisualization = () => {
     setDisableStarters(true);
     if (alg === 0) {
-      const result = dijkstra(matrix);
+      const result = console.log("djikstra");
       Animate(result, 10, "djikstra");
     }
     if (alg === 1) {
-      const result = aStar([...matrix]);
+      const result = console.log("A*");
       Animate(result, 15, "A*");
     }
   };
