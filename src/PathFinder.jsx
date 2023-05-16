@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Bar from "./components/Bar";
 import Node from "./components/Node";
+import aStar from "./algorithms/A-star";
+import dijkstra from "./algorithms/Djikstra";
 
 const x = 30;
 const y = 50;
@@ -139,11 +141,11 @@ const PathFinder = () => {
   const startVisualization = () => {
     setDisableStarters(true);
     if (alg === 0) {
-      const result = console.log("djikstra");
+      const result = dijkstra(matrix);
       Animate(result, 10, "djikstra");
     }
     if (alg === 1) {
-      const result = console.log("A*");
+      const result = aStar([...matrix]);
       Animate(result, 15, "A*");
     }
   };

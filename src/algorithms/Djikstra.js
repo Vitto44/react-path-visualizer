@@ -1,14 +1,3 @@
-// figure out start node
-// get neighbors of start
-// set distance of neighbors
-// set previous node of neighbors
-// set start node to visited
-// get unvisited neighbors of neighbors
-// set distance of unvisited neighbors
-// set previous node of unvisited neighbors
-// set neighbors to visited
-// repeat until all nodes are visited
-
 export default function dijkstra(matrix) {
   const startNode = matrix.find((node) => node.status === 0);
   startNode.F = 0;
