@@ -49,43 +49,47 @@ const Node = ({
     },
   };
 
+  const handleOnClick = () => {
+    !disabledChoice &&
+      setMatrix((prev) => {
+        if (mode === 1 || mode === 0) {
+          const newMatrix = [...prev];
+          newMatrix.forEach((node) => {
+            if (node.status === mode) {
+              node.status = 3;
+            }
+          });
+          newMatrix[num].status = mode;
+          return newMatrix;
+        } else if (status === 3 || status === 4 || status === 2) {
+          const newMatrix = [...prev];
+          newMatrix[num].status = mode;
+          setIsMouseDown(!isMouseDown);
+          return newMatrix;
+        }
+        return prev;
+      });
+  };
+
+  const handleOnMouseEnter = () => {
+    if (mode === 2 || mode === 3) {
+      if (status === 3 || status === 4 || status === 2) {
+        !disabledChoice &&
+          isMouseDown &&
+          setMatrix((prev) => {
+            const newMatrix = [...prev];
+            newMatrix[num].status = mode;
+            return newMatrix;
+          });
+      }
+    }
+  };
+
   return (
     <div
       style={styles.node}
-      onClick={() => {
-        !disabledChoice &&
-          setMatrix((prev) => {
-            if (mode === 1 || mode === 0) {
-              const newMatrix = [...prev];
-              newMatrix.forEach((node) => {
-                if (node.status === mode) {
-                  node.status = 3;
-                }
-              });
-              newMatrix[num].status = mode;
-              return newMatrix;
-            } else if (status === 3 || status === 4 || status === 2) {
-              const newMatrix = [...prev];
-              newMatrix[num].status = mode;
-              setIsMouseDown(!isMouseDown);
-              return newMatrix;
-            }
-            return prev;
-          });
-      }}
-      onMouseEnter={() => {
-        if (mode === 2 || mode === 3) {
-          if (status === 3 || status === 4 || status === 2) {
-            !disabledChoice &&
-              isMouseDown &&
-              setMatrix((prev) => {
-                const newMatrix = [...prev];
-                newMatrix[num].status = mode;
-                return newMatrix;
-              });
-          }
-        }
-      }}
+      onClick={handleOnClick}
+      onMouseEnter={handleOnMouseEnter}
     />
   );
 };
