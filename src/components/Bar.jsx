@@ -1,4 +1,5 @@
 import React from "react";
+import { barStyle } from "../styles";
 
 const modes = [
   { id: 0, name: "Start" },
@@ -25,16 +26,16 @@ const Bar = ({
   return (
     <div>
       {
-        <p style={styles.disabledText}>
+        <p style={barStyle.disabledText}>
           {disabledChoice && "*To change parameters clear or reset the Grid"}
         </p>
       }
-      <div style={styles.main}>
-        <div style={styles.buttonBackground}>
+      <div style={barStyle.main}>
+        <div style={barStyle.buttonBackground}>
           <button
             disabled={disableStarters}
             style={{
-              ...styles.button,
+              ...barStyle.button,
               backgroundColor: "crimson",
               color: "white",
               opacity: disableStarters ? 0.5 : 1,
@@ -46,7 +47,7 @@ const Bar = ({
           <button
             disabled={disableStarters}
             style={{
-              ...styles.button,
+              ...barStyle.button,
               backgroundColor: "#ca5310",
               color: "white",
               opacity: disableStarters ? 0.5 : 1,
@@ -58,7 +59,7 @@ const Bar = ({
           <button
             disabled={disableStarters}
             style={{
-              ...styles.button,
+              ...barStyle.button,
               backgroundColor: "darkGreen",
               color: "white",
               opacity: disableStarters ? 0.5 : 1,
@@ -68,15 +69,17 @@ const Bar = ({
             Visualize
           </button>
         </div>
-        <div style={styles.buttonBackground}>
+        <div style={barStyle.buttonBackground}>
           {modes.map((Item) => (
             <button
               disabled={disabledChoice}
               key={Item.id}
               style={{
-                ...styles.button,
+                ...barStyle.button,
                 backgroundColor:
-                  Item.id === mode ? "#42a5f5" : styles.button.backgroundColor,
+                  Item.id === mode
+                    ? "#42a5f5"
+                    : barStyle.button.backgroundColor,
                 opacity: disabledChoice ? 0.5 : 1,
               }}
               onClick={() => setMode(Item.id)}
@@ -85,15 +88,15 @@ const Bar = ({
             </button>
           ))}
         </div>
-        <div style={styles.buttonBackground}>
+        <div style={barStyle.buttonBackground}>
           {algorithms.map((Item) => (
             <button
               disabled={disabledChoice}
               key={Item.id}
               style={{
-                ...styles.button,
+                ...barStyle.button,
                 backgroundColor:
-                  Item.id === alg ? "#42a5f5" : styles.button.backgroundColor,
+                  Item.id === alg ? "#42a5f5" : barStyle.button.backgroundColor,
                 opacity: disabledChoice ? 0.5 : 1,
               }}
               onClick={() => setAlg(Item.id)}
@@ -105,41 +108,6 @@ const Bar = ({
       </div>
     </div>
   );
-};
-
-const styles = {
-  main: {
-    width: "100%",
-    color: "white",
-    height: "fit-content",
-    margin: "0px auto",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  button: {
-    backgroundColor: "#bbdefb",
-    fontWeight: "bold",
-    width: "80px",
-    color: "black",
-    border: "none",
-    padding: "10px",
-    borderRadius: "5px",
-    margin: "5px 5px",
-    cursor: "pointer",
-  },
-  disabledText: {
-    height: "15px",
-  },
-  buttonBackground: {
-    backgroundColor: "#fff",
-    borderRadius: "5px",
-    padding: "3px",
-    margin: "5px",
-    justifyContent: "center",
-    display: "flex",
-    flexWrap: "wrap",
-  },
 };
 
 export default Bar;

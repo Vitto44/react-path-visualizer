@@ -28,3 +28,38 @@ export const nodeStyle = {
   cursor: "pointer",
   transition: "all 0.3s",
 };
+
+export const barStyle = {
+  main: {
+    width: "100%",
+    color: "white",
+    height: "fit-content",
+    margin: "0px auto",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  button: {
+    backgroundColor: "#bbdefb",
+    fontWeight: "bold",
+    width: "80px",
+    color: "black",
+    border: "none",
+    padding: "10px",
+    borderRadius: "5px",
+    margin: "5px 5px",
+    cursor: "pointer",
+  },
+  disabledText: {
+    height: "15px",
+  },
+  buttonBackground: {
+    backgroundColor: "#fff",
+    borderRadius: "5px",
+    padding: "3px",
+    margin: "5px",
+    justifyContent: "center",
+    display: "flex",
+    flexWrap: "wrap",
+  },
+};
