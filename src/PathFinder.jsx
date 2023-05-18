@@ -3,6 +3,7 @@ import Bar from "./components/Bar";
 import Node from "./components/Node";
 import aStar from "./algorithms/A-star";
 import dijkstra from "./algorithms/Djikstra";
+import { pathFinderStyle } from "./styles";
 
 const x = 30;
 const y = 50;
@@ -151,7 +152,7 @@ const PathFinder = () => {
   };
 
   return (
-    <div style={styles.main}>
+    <div style={pathFinderStyle.main}>
       <Bar
         disableStarters={disableStarters}
         alg={alg}
@@ -163,8 +164,8 @@ const PathFinder = () => {
         clear={clearMatrix}
         start={startVisualization}
       />
-      <div style={styles.center}>
-        <div style={styles.grid}>
+      <div style={pathFinderStyle.center}>
+        <div style={pathFinderStyle.grid}>
           {matrix.map((node) => (
             <Node
               isMouseDown={isMouseDown}
